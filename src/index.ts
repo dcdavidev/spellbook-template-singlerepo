@@ -1,6 +1,6 @@
 /**
  * @fileoverview A friendly greeting.
- * @author dcdavidev
+ * @author @dcdavidev
  */
 
 /**
