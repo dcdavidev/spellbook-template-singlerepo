@@ -1,6 +1,10 @@
 /**
+ * @fileoverview A friendly greeting.
+ * @author dcdavidev
+ */
+
+/**
  * Builds a friendly greeting.
- *
  * @param name - Who to greet. Defaults to `world`.
  * @returns The greeting, for example `Hello, world!`.
  */
