@@ -1,13 +1,49 @@
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: /
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: weekly
-    allow:
-      - dependency-name: turbo
+      interval: 'weekly'
     commit-message:
-      prefix: chore
-      include: scope
-    labels:
-      - dependencies
+      prefix: 'build'
+      prefix-development: 'build'
+      include: 'scope'
+    allow:
+      - dependency-name: 'turbo'
+      - dependency-name: '@commitlint/*'
+      - dependency-name: '@spellbookx/*'
+      - dependency-name: '@typescript/native'
+      - dependency-name: '@vitest/*'
+      - dependency-name: '*-spellbookx'
+      - dependency-name: 'conventional-changelog-conventionalcommits'
+      - dependency-name: 'cspell'
+      - dependency-name: 'czg'
+      - dependency-name: 'eslint'
+      - dependency-name: 'lefthook'
+      - dependency-name: 'prettier'
+      - dependency-name: 'vitest'
+    groups:
+      spellbookx:
+        patterns:
+          - '@spellbookx/*'
+          - '*-spellbookx'
+      vitest:
+        patterns:
+          - 'vitest'
+          - '@vitest/*'
+      commitlint:
+        patterns:
+          - '@commitlint/*'
+          - 'conventional-changelog-conventionalcommits'
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
+    groups:
+      github-actions:
+        patterns:
+          - '*'
