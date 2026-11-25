@@ -13,11 +13,11 @@ jobs:
   update-turbo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
@@ -31,7 +31,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.turbo.outputs.updated == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: 'build(deps-dev): bump turbo to ${{ steps.turbo.outputs.version }}'
           title: 'build(deps-dev): bump turbo to ${{ steps.turbo.outputs.version }}'
