@@ -60,7 +60,8 @@
     "lint:types": "tsc --noEmit",
     "prepare": "lefthook install",
     "test": "vitest run --no-fsModuleCache --passWithNoTests --coverage",
-    "update:turbo": "pnpm dlx @turbo/codemod@latest update --force"
+    "update:node": "pnpm exec tsx ./scripts/update-node.ts",
+    "update:turbo": "pnx @turbo/codemod@latest update --force --install ."
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",
@@ -80,6 +81,7 @@
     "lefthook": "^2.2.2",
     "prettier": "^3.10.1",
     "prettier-config-spellbookx": "^2.0.0",
+    "tsx": "^4.23.15",
     "turbo": "^2.11.13",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vitest": "^5.1.1"
@@ -88,7 +90,7 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.23.0",
+      "version": "^12.23.0",
       "onFail": "download"
     }
   },

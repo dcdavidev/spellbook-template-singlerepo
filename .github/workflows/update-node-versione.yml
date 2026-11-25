@@ -1,0 +1,75 @@
+name: Update Node.js version
+
+on:
+  schedule:
+    - cron: '0 7 * * 1' # Ogni lunedì alle 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check and update Node.js version in .nvmrc and package.json
+        id: node
+        run: |
+          LATEST_FULL=$(curl -s https://nodejs.org/dist/index.json | jq -r '[.[] | select(.lts != false)][0].version' | sed 's/^v//')
+          LATEST_MAJOR=$(echo "$LATEST_FULL" | cut -d. -f1)
+
+          node -e '
+            const fs = require("fs");
+            const latestFull = process.argv[1];
+            const latestMajor = process.argv[2];
+
+            // 1. Aggiorna .nvmrc mantenendo lo stile attuale (solo major vs versione completa)
+            const currentNvmrc = fs.readFileSync(".nvmrc", "utf8").trim();
+            const isMajorOnly = /^\d+$/.test(currentNvmrc);
+            const targetNvmrc = isMajorOnly ? latestMajor : latestFull;
+
+            let changed = false;
+            if (currentNvmrc !== targetNvmrc) {
+              fs.writeFileSync(".nvmrc", targetNvmrc + "\n");
+              changed = true;
+            }
+
+            // 2. Aggiorna devEngines.runtime nel package.json
+            const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
+            const runtime = pkg.devEngines?.runtime;
+
+            const updateEntry = (entry) => {
+              if (!entry || entry.name !== "node" || typeof entry.version !== "string") return;
+              // Preserva eventuali prefissi semver (^, ~, >=)
+              const prefixMatch = entry.version.match(/^(\^|~|>=|>)?/);
+              const prefix = prefixMatch ? prefixMatch[0] : "";
+              const targetVersion = isMajorOnly ? `${prefix}${latestMajor}.0.0` : `${prefix}${latestFull}`;
+              if (entry.version !== targetVersion) {
+                entry.version = targetVersion;
+                changed = true;
+              }
+            };
+
+            if (Array.isArray(runtime)) {
+              runtime.forEach(updateEntry);
+            } else if (runtime) {
+              updateEntry(runtime);
+            }
+
+            if (changed) {
+              fs.writeFileSync("package.json", JSON.stringify(pkg, null, 2) + "\n");
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, `updated=true\nversion=${targetNvmrc}\n`);
+            }
+          ' "$LATEST_FULL" "$LATEST_MAJOR"
+
+      - name: Create Pull Request
+        if: steps.node.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'build(deps): bump node to ${{ steps.node.outputs.version }}'
+          title: 'build(deps): bump node to ${{ steps.node.outputs.version }}'
+          branch: chore/update-node
+          delete-branch: true
