@@ -48,6 +48,9 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "changeset": "changeset",
+    "changeset:commits": "changeset-conventional",
+    "changeset:version": "changeset version",
     "check": "turbo run build lint:code lint:spelling lint:types fmt:check test",
     "commit": "czg",
     "fmt": "prettier --ignore-unknown --write .",
@@ -64,12 +67,15 @@
     "update:turbo": "pnpm exec tsx ./scripts/update-turbo.ts"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^1.0.1",
+    "@changesets/cli": "^3.0.3",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@spellbookx/recipes": "^2.0.0",
     "@types/node": "^26.6.6",
     "@typescript/native": "npm:typescript@^7.0.2",
     "@vitest/coverage-v8": "^5.1.1",
+    "changeset-conventional-commits": "^1.0.4",
     "commitlint-config-spellbookx": "^2.0.0",
     "conventional-changelog-conventionalcommits": "^10.4.1",
     "cspell": "^10.5.2",
