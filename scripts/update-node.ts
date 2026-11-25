@@ -1,8 +1,9 @@
 /**
- * @file Fetches the latest Node.js LTS release and updates `.nvmrc`
- * and `devEngines.runtime` in `package.json`.
+ * @file Fetches the latest Node.js LTS release, updates `.nvmrc`
+ * and `devEngines.runtime` in `package.json`, and upgrades `@types/node`.
  */
 
+import { execFileSync } from 'node:child_process';
 import {
   appendFileSync,
   existsSync,
@@ -166,6 +167,10 @@ async function main(): Promise<void> {
 
   if (isChanged) {
     writeFileSync('package.json', `${JSON.stringify(pkg, null, 2)}\n`, 'utf8');
+
+    // Upgrade @types/node in package.json and pnpm-lock.yaml
+    execFileSync('pnpm', ['up', '@types/node'], { stdio: 'inherit' });
+
     reportResult(true, targetNvmrc);
   } else {
     reportResult(false);
