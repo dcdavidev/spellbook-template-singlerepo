@@ -93,13 +93,6 @@
     "vitest": "^5.1.1"
   },
   "packageManager": "pnpm@12.23.0",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^12.23.0",
-      "onFail": "download"
-    }
-  },
   "publishConfig": {
     "access": "public"
   }
