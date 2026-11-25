@@ -31,6 +31,7 @@ This guide describes the layout, configuration conventions, build pipeline, and 
 ├── dist/                    # Compiled JS, declarations, and source maps (generated, gitignored)
 ├── docs/
 │   ├── CONTRIBUTING.md      # Main contributing guide
+│   ├── SECURITY.md          # Security policy and vulnerability reporting
 │   └── contribute/          # Detailed contributor documentation
 ├── scripts/
 │   ├── update-node.ts       # Syncs `.nvmrc` and `@types/node` with Node.js LTS

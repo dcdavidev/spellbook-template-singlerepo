@@ -17,7 +17,7 @@ Read these guides before you start working on a change:
 
 ## Ways to Contribute
 
-- **Report bugs**: open an issue on [GitHub Issues](https://github.com/dcdavidev/spellbookx-template-singlerepo/issues) with clear reproduction steps, expected behavior, actual behavior, and your Node.js / pnpm versions.
+- **Report bugs**: open an issue on [GitHub Issues](https://github.com/dcdavidev/spellbookx-template-singlerepo/issues) with clear reproduction steps, expected behavior, actual behavior, and your Node.js / pnpm versions. For security vulnerabilities, see the [Security Policy](./SECURITY.md) instead of opening a public issue.
 - **Propose improvements**: open an issue first for larger changes (new tooling, config changes, or structural updates) so we can agree on the approach before you write code.
 - **Submit pull requests**: fix bugs, improve documentation, or add tests and enhancements following the workflow below.
 
@@ -93,7 +93,7 @@ Versioning and changelog generation are managed with [Changesets](https://github
 
 The repository uses scheduled automation to keep core tooling up to date:
 
-- **Dependabot** ([`.github/dependabot.yml`](../.github/dependabot.yml)) opens weekly pull requests for grouped npm development dependencies (`spellbookx`, `vitest`, `commitlint`, and core tools) and GitHub Actions.
+- **Dependabot** ([`.github/dependabot.yml`](../.github/dependabot.yml)) opens weekly pull requests for grouped npm development dependencies (`spellbookx`, `vitest`, `commitlint`, `changesets`, and core tools) and GitHub Actions.
 - **Node.js LTS updates** ([`.github/workflows/update-node.yml`](../.github/workflows/update-node.yml)) run `pnpm update:node` every Monday to sync `.nvmrc` and `@types/node` with the latest active Node.js LTS release.
 - **Turborepo updates** ([`.github/workflows/update-turbo.yml`](../.github/workflows/update-turbo.yml)) run `pnpm update:turbo` every Monday to upgrade `turbo` and apply `@turbo/codemod` migrations.
 

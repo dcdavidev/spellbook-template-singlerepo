@@ -119,7 +119,7 @@ If you use another editor, enable its EditorConfig, ESLint, Prettier, and CSpell
 - `.github/`: CI workflows, scheduled update workflows, and Dependabot configuration.
 - `.vscode/`: workspace settings and recommended extensions for VS Code.
 - `.agents/skills/`: skills for AI coding assistants.
-- `docs/`: contributing guide and contributor documentation.
+- `docs/`: contributing guide, contributor documentation, and the [security policy](../SECURITY.md).
 
 For a deeper look at how the configuration, build pipeline, and tooling fit together, see [Architecture](./architecture.md).
 
