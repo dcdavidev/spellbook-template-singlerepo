@@ -39,8 +39,6 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      # The root ESLint, Prettier, CSpell and commitlint configs load the
-      # workspace packages from their dist/ folders, so build them first.
       - name: Build
         run: pnpm build
 

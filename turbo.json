@@ -17,7 +17,13 @@
       "outputs": []
     },
     "lint:types": {
-      "inputs": ["src/**", "tests/**", "tsconfig*.json", "package.json"],
+      "inputs": [
+        "src/**",
+        "tests/**",
+        "scripts/**",
+        "tsconfig*.json",
+        "package.json"
+      ],
       "outputs": []
     },
     "fmt:check": {

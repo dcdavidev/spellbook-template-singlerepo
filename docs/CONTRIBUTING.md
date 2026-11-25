@@ -93,7 +93,7 @@ Versioning and changelog generation are managed with [Changesets](https://github
 
 The repository uses scheduled automation to keep core tooling up to date:
 
-- **Dependabot** ([`.github/dependabot.yml`](../.github/dependabot.yml)) opens weekly pull requests for grouped npm development dependencies (`spellbookx`, `vitest`, `commitlint`, `changesets`, and core tools) and GitHub Actions.
+- **Dependabot** ([`.github/dependabot.yml`](../.github/dependabot.yml)) opens weekly pull requests for grouped npm dependencies (`spellbookx`, `vitest`, `changesets`, and core tools) and GitHub Actions.
 - **Node.js LTS updates** ([`.github/workflows/update-node.yml`](../.github/workflows/update-node.yml)) run `pnpm update:node` every Monday to sync `.nvmrc` and `@types/node` with the latest active Node.js LTS release.
 - **Turborepo updates** ([`.github/workflows/update-turbo.yml`](../.github/workflows/update-turbo.yml)) run `pnpm update:turbo` every Monday to upgrade `turbo` and apply `@turbo/codemod` migrations.
 
