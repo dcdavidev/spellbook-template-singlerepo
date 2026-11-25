@@ -61,7 +61,7 @@
     "prepare": "lefthook install",
     "test": "vitest run --no-fsModuleCache --passWithNoTests --coverage",
     "update:node": "pnpm exec tsx ./scripts/update-node.ts",
-    "update:turbo": "pnx @turbo/codemod@latest update --force --install ."
+    "update:turbo": "pnpm exec tsx ./scripts/update-turbo.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",

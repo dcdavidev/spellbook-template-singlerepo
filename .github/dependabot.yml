@@ -10,7 +10,6 @@ updates:
       include: 'scope'
     allow:
       - dependency-name: 'pnpm'
-      - dependency-name: 'turbo'
       - dependency-name: '@commitlint/*'
       - dependency-name: '@spellbookx/*'
       - dependency-name: '@typescript/native'
